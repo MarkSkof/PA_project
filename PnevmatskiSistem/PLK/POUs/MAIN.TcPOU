@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{f07c1a1b-64dd-448f-b981-7b9317a5ba38}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	MotorBelt: Motor;
+	MotorTable: Motor;
+	SelectedMotor: Bool;
+	inputPiston: PistonInputLogic;
+	outputPiston: PistonOutputLogic;
+	pressPiston: TableLogic;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF gvl.ButtonGreen THEN
+	gvl.MotorCompressor := TRUE;
+ELSIF gvl.ButtonRed THEN
+	gvl.MotorCompressor := FALSE;
+END_IF
+
+IF gvl.ButtonBLT THEN
+	SelectedMotor := TRUE;
+ELSIF gvl.ButtonBRT THEN
+	SelectedMotor := FALSE;
+END_IF
+
+IF SelectedMotor THEN
+	MotorBelt(
+		SelectedMode := gvl.Switch,
+		Forwards := gvl.ButtonBRB,
+		Backwards := gvl.ButtonBLB,
+		blockTime := T#0.5S,
+		Active => gvl.MotorBeltMove,
+		Direction => gvl.MotorBeltDirection
+	);
+ELSE
+	MotorTable(
+		SelectedMode := gvl.Switch,
+		Forwards := gvl.ButtonBRB,
+		Backwards := gvl.ButtonBLB,
+		blockTime := T#0.5S,
+		Active => gvl.MotorTableMove,
+		Direction => gvl.MotorTableDirection
+	);
+END_IF
+
+inputPiston();
+//pressPiston();
+outputPiston();]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="75" Count="0" />
+      <LineId Id="78" Count="4" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="48" Count="1" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="60" Count="2" />
+      <LineId Id="64" Count="0" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="67" Count="6" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="110" Count="0" />
+      <LineId Id="93" Count="0" />
+      <LineId Id="179" Count="0" />
+      <LineId Id="142" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

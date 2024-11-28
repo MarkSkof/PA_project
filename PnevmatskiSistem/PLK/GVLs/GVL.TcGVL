@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="GVL" Id="{2a48dfab-2061-46a7-b50f-365f31904061}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	ButtonRed AT %I*: BOOL;
+	ButtonBRT AT %I*: BOOL;
+	ButtonBLB AT %I*: BOOL;
+	Switch AT %I*: BOOL;
+	ButtonBLT AT %I*: BOOL;
+	ButtonGreen AT %I*: BOOL;
+	ButtonBRB AT %I*: BOOL;
+	LEDRed AT %Q*: BOOL;
+	LEDGreen AT %Q*: BOOL;
+	LEDBlueTop AT %Q*: BOOL;
+	LEDBlueBottom AT %Q*: BOOL;
+	FotocellInput AT %I*: BOOL;
+	FotocellOutput AT %I*: BOOL;
+	SwitchPress AT %I*: BOOL;
+	SwitchTableExit AT %I*: BOOL;
+	SwitchTablePosition AT %I*: BOOL;
+	SwitchCompressor AT %I*: BOOL;
+	MotorCompressor AT %Q*: BOOL;
+	MotorTableMove AT %Q*: BOOL;
+	MotorTableDirection AT %Q*: BOOL;
+	MotorBeltMove AT %Q*: BOOL;
+	MotorBeltDirection AT %Q*: BOOL;
+	PistonInputForward AT %Q*: BOOL;
+	PistonInputBackwards AT %Q*: BOOL;
+	PistonPress AT %Q*: BOOL;
+	PistonOutputBackwards AT %Q*: BOOL;
+	PistonOutputForward AT %Q*: BOOL;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

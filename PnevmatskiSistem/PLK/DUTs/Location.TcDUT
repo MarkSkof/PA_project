@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="Location" Id="{f53cbbdb-3716-4a50-903e-8ae6c021bc99}">
+    <Declaration><![CDATA[TYPE Location :
+STRUCT
+	Item: Item;
+	Active: BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

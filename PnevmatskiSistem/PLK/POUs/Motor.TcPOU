@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Motor" Id="{13bd65e9-0070-4554-9c32-04047f08cb7f}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Motor
+VAR_INPUT
+	SelectedMode: BOOL;
+END_VAR
+VAR_OUTPUT
+	Direction: BOOL;
+	Active: BOOL;
+END_VAR
+VAR_INPUT
+	Forwards: BOOL;
+	Backwards: BOOL;
+	blockTime: TIME;
+END_VAR
+VAR
+	timerForward: TOF;
+	timerBackward: TOF;
+	blockForward: BOOL;
+	blockBackward: BOOL;
+	rotateForward: BOOL;
+	rotateBackward: BOOL;
+	fallTrigForward: F_TRIG;
+	fallDetectedForward: BOOL;
+	fallTrigBackward: F_TRIG;
+	fallDetectedBackward: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fallTrigForward(CLK := Forwards, Q => fallDetectedForward);
+fallTrigBackward(CLK := Backwards, Q => fallDetectedBackward);
+
+timerForward(IN := fallDetectedForward, PT := blockTime, Q => blockBackward);
+timerBackward(IN := fallDetectedBackward, PT := blockTime, Q => blockForward);
+
+rotateForward := Forwards AND NOT blockForward;
+rotateBackward := Backwards AND NOT blockBackward;
+
+IF SelectedMode THEN
+	IF rotateForward OR rotateBackward THEN
+		IF rotateForward THEN
+			Direction := TRUE;
+		ELSIF rotateBackward THEN 
+			Direction := FALSE;
+		END_IF
+		
+		Active := TRUE;
+	ELSE
+		Active := FALSE;
+	END_IF
+		
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="Motor">
+      <LineId Id="946" Count="0" />
+      <LineId Id="965" Count="0" />
+      <LineId Id="947" Count="11" />
+      <LineId Id="1119" Count="0" />
+      <LineId Id="960" Count="0" />
+      <LineId Id="1275" Count="1" />
+      <LineId Id="1092" Count="0" />
+      <LineId Id="1274" Count="0" />
+      <LineId Id="963" Count="1" />
+      <LineId Id="154" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

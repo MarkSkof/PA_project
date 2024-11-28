@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="PistonInputLogic" Id="{0374200a-6ee2-41d8-9778-4655e6023c4b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK PistonInputLogic
+VAR
+	timer: TOF;
+	timerElapsed: BOOL;
+	counter: CTU;
+	id: UDINT;
+	item: Item;
+	location: Location;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[timer(IN :=  NOT gvl.FotocellInput AND gvl.SwitchTablePosition, PT := T#1S, Q => timerElapsed);
+counter();
+
+IF	timerElapsed THEN
+	gvl.PistonInputBackwards := FALSE;
+	gvl.PistonInputForward := TRUE;
+	id := counter.CV;
+	counter.CU := TRUE;
+	LocalVariables.Locations[2].Item.Id := LocalVariables.Locations[1].Item.Id;
+	LocalVariables.Locations[2].Item.Recipe := LocalVariables.Locations[1].Item.Recipe;
+	
+ELSIF NOT gvl.FotocellInput THEN
+	LocalVariables.Locations[1].Item.Id := id;
+	LocalVariables.Locations[1].Item.Recipe := LocalVariables.Recipe;
+
+ELSE
+	gvl.PistonInputBackwards := TRUE;
+	gvl.PistonInputForward := FALSE;
+	counter.CU := FALSE;
+	LocalVariables.Locations[1].Item.Id := NULL;
+END_IF
+
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="PistonInputLogic">
+      <LineId Id="91" Count="0" />
+      <LineId Id="183" Count="0" />
+      <LineId Id="92" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="464" Count="3" />
+      <LineId Id="469" Count="0" />
+      <LineId Id="472" Count="0" />
+      <LineId Id="483" Count="0" />
+      <LineId Id="402" Count="0" />
+      <LineId Id="463" Count="0" />
+      <LineId Id="482" Count="0" />
+      <LineId Id="408" Count="0" />
+      <LineId Id="110" Count="1" />
+      <LineId Id="113" Count="0" />
+      <LineId Id="304" Count="0" />
+      <LineId Id="478" Count="0" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="350" Count="0" />
+      <LineId Id="209" Count="0" />
+      <LineId Id="296" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="LocalVariables" Id="{00d99d77-36d2-4a9d-a011-353ac64f70c3}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	Locations: ARRAY[1..6] OF Location;
+	Recipe: Recipe := (NumOfPresses := 1, WorkingTime := TIME#2s0ms);
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

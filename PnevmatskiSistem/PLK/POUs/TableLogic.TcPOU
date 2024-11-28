@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="TableLogic" Id="{f635f7ab-4fc0-4104-8ada-04baa1f4a91b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK TableLogic
+VAR
+	timer: TOF;
+	timerElapsed: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[timer(IN := gvl.SwitchPress, PT := LocalVariables.Recipe.WorkingTime, Q => timerElapsed);
+gvl.MotorTableMove := TRUE;
+IF NOT timerElapsed THEN
+	gvl.PistonPress := FALSE;
+	gvl.MotorTableMove := FALSE;
+ELSE
+	gvl.PistonPress := TRUE;
+	gvl.MotorTableMove := FALSE;
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="TableLogic">
+      <LineId Id="9" Count="0" />
+      <LineId Id="15" Count="2" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="20" Count="1" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="29" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

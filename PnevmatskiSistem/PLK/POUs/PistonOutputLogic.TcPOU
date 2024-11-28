@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="PistonOutputLogic" Id="{3ca4cc8a-59a8-49d1-bcf1-188defb0c6a9}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK PistonOutputLogic
+VAR
+	timer: TOF;
+	timerElapsed: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[timer(IN := gvl.SwitchTableExit, PT := T#1S, Q => timerElapsed);
+
+IF timerElapsed THEN
+	gvl.PistonOutputBackwards := FALSE;
+	gvl.PistonOutputForward := TRUE;
+
+ELSE
+	gvl.PistonOutputBackwards := TRUE;
+	gvl.PistonOutputForward := FALSE;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="PistonOutputLogic">
+      <LineId Id="19" Count="4" />
+      <LineId Id="179" Count="0" />
+      <LineId Id="24" Count="2" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
