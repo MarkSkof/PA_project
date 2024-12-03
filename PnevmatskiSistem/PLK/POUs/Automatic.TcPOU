@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Automatic" Id="{f92e9b7a-f792-439f-a45d-f4a06f7fc726}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Automatic
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	inputPiston: PistonInputLogic;
+	outputPiston: PistonOutputLogic;
+	tablelogic: TableLogic;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[inputPiston();
+tableLogic();
+outputPiston();
+
+IF gvl.FotocellOutput THEN
+	gvl.MotorBeltMove := FALSE;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="Automatic">
+      <LineId Id="10" Count="2" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="24" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

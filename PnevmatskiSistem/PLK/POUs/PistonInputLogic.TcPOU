@@ -17,9 +17,8 @@ counter();
 
 IF	timerElapsed THEN
 	gvl.PistonInputBackwards := FALSE;
-	gvl.PistonInputForward := TRUE;
-	id := counter.CV;
-	counter.CU := TRUE;
+	gvl.PistonInputForward := TRUE;	counter.CU := TRUE;
+	id := counter.CV + 1;
 	LocalVariables.Locations[2].Item.Id := LocalVariables.Locations[1].Item.Id;
 	LocalVariables.Locations[2].Item.Recipe := LocalVariables.Locations[1].Item.Recipe;
 	
@@ -42,7 +41,7 @@ END_IF
       <LineId Id="183" Count="0" />
       <LineId Id="92" Count="0" />
       <LineId Id="9" Count="0" />
-      <LineId Id="464" Count="3" />
+      <LineId Id="464" Count="2" />
       <LineId Id="469" Count="0" />
       <LineId Id="472" Count="0" />
       <LineId Id="483" Count="0" />

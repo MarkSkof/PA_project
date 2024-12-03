@@ -8,12 +8,14 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[timer(IN := gvl.SwitchTableExit, PT := T#1S, Q => timerElapsed);
+      <ST><![CDATA[timer(IN := gvl.SwitchTableExit, PT := T#0.5S, Q => timerElapsed);
 
 IF timerElapsed THEN
 	gvl.PistonOutputBackwards := FALSE;
 	gvl.PistonOutputForward := TRUE;
-
+	LocalVariables.Locations[5].Item.Id := LocalVariables.Locations[4].Item.Id;
+	LocalVariables.Locations[5].Item.Recipe := LocalVariables.Locations[4].Item.Recipe;
+	gvl.MotorBeltMove := TRUE;
 ELSE
 	gvl.PistonOutputBackwards := TRUE;
 	gvl.PistonOutputForward := FALSE;
@@ -21,7 +23,8 @@ END_IF]]></ST>
     </Implementation>
     <LineIds Name="PistonOutputLogic">
       <LineId Id="19" Count="4" />
-      <LineId Id="179" Count="0" />
+      <LineId Id="185" Count="1" />
+      <LineId Id="192" Count="0" />
       <LineId Id="24" Count="2" />
       <LineId Id="9" Count="0" />
     </LineIds>

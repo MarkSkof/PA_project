@@ -41,7 +41,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{25D06914-D94F-4FBC-A5CC-DFDE5BD2EC92}" Name="PLK" PrjFilePath="PLK\PLK.plcproj" TmcFilePath="PLK\PLK.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLK\PLK.tmc" TmcHash="{CDBE845F-F6F8-3CF6-D123-0A6562F5B2ED}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLK\PLK.tmc" TmcHash="{B1033159-84B1-303C-C609-BB1438BC673E}">
 					<Name>PLK Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">

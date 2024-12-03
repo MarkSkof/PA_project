@@ -3,15 +3,21 @@
   <POU Name="TableLogic" Id="{f635f7ab-4fc0-4104-8ada-04baa1f4a91b}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK TableLogic
 VAR
-	timer: TOF;
+	timer: TON;
 	timerElapsed: BOOL;
+	riseTrig: F_TRIG;
+	riseTrigDetected: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[timer(IN := gvl.SwitchPress, PT := LocalVariables.Recipe.WorkingTime, Q => timerElapsed);
+      <ST><![CDATA[riseTrig(CLK := gvl.SwitchPress, Q => riseTrigDetected);
+
+timer(IN := riseTrigDetected, PT := LocalVariables.Recipe.WorkingTime, Q => timerElapsed);
 gvl.MotorTableMove := TRUE;
 IF NOT timerElapsed THEN
 	gvl.PistonPress := FALSE;
+	gvl.MotorTableMove := TRUE;
+ELSIF gvl.SwitchTableExit THEN
 	gvl.MotorTableMove := FALSE;
 ELSE
 	gvl.PistonPress := TRUE;
@@ -20,9 +26,12 @@ END_IF
 ]]></ST>
     </Implementation>
     <LineIds Name="TableLogic">
+      <LineId Id="62" Count="1" />
       <LineId Id="9" Count="0" />
       <LineId Id="15" Count="2" />
       <LineId Id="24" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="38" Count="0" />
       <LineId Id="20" Count="1" />
       <LineId Id="25" Count="0" />
       <LineId Id="13" Count="0" />
