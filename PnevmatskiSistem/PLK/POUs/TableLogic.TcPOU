@@ -3,39 +3,43 @@
   <POU Name="TableLogic" Id="{f635f7ab-4fc0-4104-8ada-04baa1f4a91b}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK TableLogic
 VAR
-	timer: TON;
+	timer: TOF;
 	timerElapsed: BOOL;
-	riseTrig: F_TRIG;
+	riseTrig: R_TRIG;
 	riseTrigDetected: BOOL;
+	counter: CTU;
+	trigerForTriger: bool;
+	timer2: TOF;
+	timer2elapsed: bool;
+	trigerForTriger2: bool;
+	delay: TON;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[riseTrig(CLK := gvl.SwitchPress, Q => riseTrigDetected);
-
 timer(IN := riseTrigDetected, PT := LocalVariables.Recipe.WorkingTime, Q => timerElapsed);
+
 gvl.MotorTableMove := TRUE;
-IF NOT timerElapsed THEN
-	gvl.PistonPress := FALSE;
-	gvl.MotorTableMove := TRUE;
-ELSIF gvl.SwitchTableExit THEN
-	gvl.MotorTableMove := FALSE;
-ELSE
+IF timerElapsed THEN
 	gvl.PistonPress := TRUE;
 	gvl.MotorTableMove := FALSE;
+	LocalVariables.Locations[3].Item.Id := LocalVariables.Locations[2].Item.Id;
+	LocalVariables.Locations[3].Item.Recipe := LocalVariables.Locations[2].Item.Recipe;
+ELSIF NOT gvl.FotocellOutput THEN
+	gvl.MotorTableMove := FALSE;
+	gvl.PistonPress := FALSE;
+ELSE	gvl.PistonPress := FALSE;
+	gvl.MotorTableMove := TRUE;
 END_IF
+
 ]]></ST>
     </Implementation>
     <LineIds Name="TableLogic">
-      <LineId Id="62" Count="1" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="15" Count="2" />
-      <LineId Id="24" Count="0" />
-      <LineId Id="35" Count="0" />
-      <LineId Id="38" Count="0" />
-      <LineId Id="20" Count="1" />
-      <LineId Id="25" Count="0" />
-      <LineId Id="13" Count="0" />
+      <LineId Id="85" Count="12" />
+      <LineId Id="99" Count="0" />
       <LineId Id="29" Count="0" />
+      <LineId Id="307" Count="0" />
+      <LineId Id="294" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="BeltLogic" Id="{f325210d-3b52-4054-8cf2-b1f617604848}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK BeltLogic
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT LocalVariables.Locations[5].Item.Id = 0 THEN
+	gvl.MotorBeltMove := TRUE;
+ELSIF NOT gvl.FotocellOutput THEN
+	LocalVariables.Locations[6].Item.Id := LocalVariables.Locations[5].Item.Id;
+	LocalVariables.Locations[6].Item.Recipe := LocalVariables.Locations[5].Item.Recipe;
+	gvl.MotorBeltMove := FALSE;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="BeltLogic">
+      <LineId Id="12" Count="1" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="16" Count="1" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

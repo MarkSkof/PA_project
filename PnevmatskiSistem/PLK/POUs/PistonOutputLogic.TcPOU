@@ -5,27 +5,38 @@
 VAR
 	timer: TOF;
 	timerElapsed: BOOL;
+	fallTrig: F_TRIG;
+	fallTrigDetected: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[timer(IN := gvl.SwitchTableExit, PT := T#0.5S, Q => timerElapsed);
+fallTrig(CLK := gvl.PistonOutputForward, Q => fallTrigDetected);
 
 IF timerElapsed THEN
 	gvl.PistonOutputBackwards := FALSE;
 	gvl.PistonOutputForward := TRUE;
+	LocalVariables.Locations[4].Item.Id := LocalVariables.Locations[3].Item.Id;
+	LocalVariables.Locations[4].Item.Recipe := LocalVariables.Locations[3].Item.Recipe;
+	gvl.MotorBeltMove := TRUE;
+ELSIF fallTrigDetected THEN
 	LocalVariables.Locations[5].Item.Id := LocalVariables.Locations[4].Item.Id;
 	LocalVariables.Locations[5].Item.Recipe := LocalVariables.Locations[4].Item.Recipe;
-	gvl.MotorBeltMove := TRUE;
 ELSE
 	gvl.PistonOutputBackwards := TRUE;
 	gvl.PistonOutputForward := FALSE;
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="PistonOutputLogic">
-      <LineId Id="19" Count="4" />
-      <LineId Id="185" Count="1" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="204" Count="0" />
+      <LineId Id="20" Count="3" />
+      <LineId Id="198" Count="1" />
       <LineId Id="192" Count="0" />
-      <LineId Id="24" Count="2" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="205" Count="1" />
+      <LineId Id="200" Count="0" />
+      <LineId Id="25" Count="1" />
       <LineId Id="9" Count="0" />
     </LineIds>
   </POU>

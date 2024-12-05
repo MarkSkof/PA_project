@@ -41,6 +41,9 @@
     <Compile Include="POUs\Automatic.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\BeltLogic.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>

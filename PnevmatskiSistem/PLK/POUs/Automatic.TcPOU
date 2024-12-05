@@ -9,23 +9,19 @@ END_VAR
 VAR
 	inputPiston: PistonInputLogic;
 	outputPiston: PistonOutputLogic;
-	tablelogic: TableLogic;
+	tableLogic: TableLogic;
+	beltLogic: BeltLogic;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[inputPiston();
 tableLogic();
 outputPiston();
-
-IF gvl.FotocellOutput THEN
-	gvl.MotorBeltMove := FALSE;
-END_IF]]></ST>
+beltLogic();]]></ST>
     </Implementation>
     <LineIds Name="Automatic">
       <LineId Id="10" Count="2" />
-      <LineId Id="23" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="24" Count="1" />
+      <LineId Id="25" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

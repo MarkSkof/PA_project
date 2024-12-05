@@ -15,14 +15,15 @@ END_VAR
       <ST><![CDATA[timer(IN :=  NOT gvl.FotocellInput AND gvl.SwitchTablePosition, PT := T#1S, Q => timerElapsed);
 counter();
 
-IF	timerElapsed THEN
+IF timerElapsed THEN
 	gvl.PistonInputBackwards := FALSE;
-	gvl.PistonInputForward := TRUE;	counter.CU := TRUE;
-	id := counter.CV + 1;
+	gvl.PistonInputForward := TRUE;
 	LocalVariables.Locations[2].Item.Id := LocalVariables.Locations[1].Item.Id;
 	LocalVariables.Locations[2].Item.Recipe := LocalVariables.Locations[1].Item.Recipe;
 	
 ELSIF NOT gvl.FotocellInput THEN
+	counter.CU := TRUE;
+	id := counter.CV;
 	LocalVariables.Locations[1].Item.Id := id;
 	LocalVariables.Locations[1].Item.Recipe := LocalVariables.Recipe;
 
@@ -41,11 +42,12 @@ END_IF
       <LineId Id="183" Count="0" />
       <LineId Id="92" Count="0" />
       <LineId Id="9" Count="0" />
-      <LineId Id="464" Count="2" />
+      <LineId Id="464" Count="1" />
       <LineId Id="469" Count="0" />
       <LineId Id="472" Count="0" />
       <LineId Id="483" Count="0" />
       <LineId Id="402" Count="0" />
+      <LineId Id="496" Count="1" />
       <LineId Id="463" Count="0" />
       <LineId Id="482" Count="0" />
       <LineId Id="408" Count="0" />
