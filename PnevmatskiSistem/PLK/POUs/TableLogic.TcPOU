@@ -20,22 +20,39 @@ END_VAR
 timer(IN := riseTrigDetected, PT := LocalVariables.Recipe.WorkingTime, Q => timerElapsed);
 
 gvl.MotorTableMove := TRUE;
+
+IF riseTrigDetected THEN
+	LocalVariables.Locations[3].Item.Id := LocalVariables.Locations[2].Item.Id;
+	LocalVariables.Locations[3].Item.Recipe := LocalVariables.Locations[2].Item.Recipe;
+	LocalVariables.Locations[2].Item.Id := 0;
+	LocalVariables.Locations[2].Item.Recipe := LocalVariables.Recipe;
+END_IF
+
 IF timerElapsed THEN
 	gvl.PistonPress := TRUE;
 	gvl.MotorTableMove := FALSE;
-	LocalVariables.Locations[3].Item.Id := LocalVariables.Locations[2].Item.Id;
-	LocalVariables.Locations[3].Item.Recipe := LocalVariables.Locations[2].Item.Recipe;
 ELSIF NOT gvl.FotocellOutput THEN
 	gvl.MotorTableMove := FALSE;
 	gvl.PistonPress := FALSE;
-ELSE	gvl.PistonPress := FALSE;
+ELSE	
+	gvl.PistonPress := FALSE;
 	gvl.MotorTableMove := TRUE;
 END_IF
 
 ]]></ST>
     </Implementation>
     <LineIds Name="TableLogic">
-      <LineId Id="85" Count="12" />
+      <LineId Id="85" Count="3" />
+      <LineId Id="323" Count="0" />
+      <LineId Id="322" Count="0" />
+      <LineId Id="329" Count="1" />
+      <LineId Id="324" Count="0" />
+      <LineId Id="326" Count="0" />
+      <LineId Id="325" Count="0" />
+      <LineId Id="327" Count="0" />
+      <LineId Id="89" Count="1" />
+      <LineId Id="93" Count="4" />
+      <LineId Id="321" Count="0" />
       <LineId Id="99" Count="0" />
       <LineId Id="29" Count="0" />
       <LineId Id="307" Count="0" />

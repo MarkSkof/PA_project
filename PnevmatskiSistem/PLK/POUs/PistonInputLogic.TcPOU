@@ -15,7 +15,7 @@ END_VAR
       <ST><![CDATA[timer(IN :=  NOT gvl.FotocellInput AND gvl.SwitchTablePosition, PT := T#1S, Q => timerElapsed);
 counter();
 
-IF timerElapsed THEN
+IF timerElapsed AND LocalVariables.Locations[2].Item.Id = 0 THEN
 	gvl.PistonInputBackwards := FALSE;
 	gvl.PistonInputForward := TRUE;
 	LocalVariables.Locations[2].Item.Id := LocalVariables.Locations[1].Item.Id;
