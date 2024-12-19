@@ -16,12 +16,14 @@ fallTrig(CLK := gvl.PistonOutputForward, Q => fallTrigDetected);
 IF timerElapsed THEN
 	gvl.PistonOutputBackwards := FALSE;
 	gvl.PistonOutputForward := TRUE;
-	LocalVariables.Locations[4].Item.Id := LocalVariables.Locations[3].Item.Id;
-	LocalVariables.Locations[4].Item.Recipe := LocalVariables.Locations[3].Item.Recipe;
+	//LocalVariables.Locations[4].Item.Id := LocalVariables.Locations[3].Item.Id;
+	//LocalVariables.Locations[4].Item.Recipe := LocalVariables.Locations[3].Item.Recipe;
 	gvl.MotorBeltMove := TRUE;
 ELSIF fallTrigDetected THEN
 	LocalVariables.Locations[5].Item.Id := LocalVariables.Locations[4].Item.Id;
 	LocalVariables.Locations[5].Item.Recipe := LocalVariables.Locations[4].Item.Recipe;
+	LocalVariables.Locations[4].Item.Id := 0;
+	LocalVariables.Locations[4].Item.Recipe := LocalVariables.Recipe;
 ELSE
 	gvl.PistonOutputBackwards := TRUE;
 	gvl.PistonOutputForward := FALSE;
@@ -34,7 +36,8 @@ END_IF]]></ST>
       <LineId Id="198" Count="1" />
       <LineId Id="192" Count="0" />
       <LineId Id="24" Count="0" />
-      <LineId Id="205" Count="1" />
+      <LineId Id="205" Count="0" />
+      <LineId Id="215" Count="2" />
       <LineId Id="200" Count="0" />
       <LineId Id="25" Count="1" />
       <LineId Id="9" Count="0" />
