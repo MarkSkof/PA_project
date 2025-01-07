@@ -7,27 +7,26 @@ VAR
 	timerElapsed: BOOL;
 	riseTrig: R_TRIG;
 	riseTrigDetected: BOOL;
+	fallTrig: F_TRIG;
+	fallTrigDetected: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[riseTrig(CLK := gvl.SwitchPress, Q => riseTrigDetected);
+fallTrig(CLK:= gvl.SwitchPress, Q => fallTrigDetected);
 timer(IN := riseTrigDetected, PT := LocalVariables.Recipe.WorkingTime, Q => timerElapsed);
 gvl.MotorTableMove := TRUE;
 
 IF riseTrigDetected THEN
 	LocalVariables.Locations[3].Item.Id := LocalVariables.Locations[2].Item.Id;
 	LocalVariables.Locations[3].Item.Recipe := LocalVariables.Locations[2].Item.Recipe;
-	LocalVariables.Locations[2].Item.Id := 0;
+	LocalVariables.Locations[2].Item.Id := NULL;
 	LocalVariables.Locations[2].Item.Recipe := LocalVariables.Recipe;
 END_IF
 
 IF timerElapsed THEN
 	gvl.PistonPress := TRUE;
 	gvl.MotorTableMove := FALSE;
-	LocalVariables.Locations[4].Item.Id := LocalVariables.Locations[3].Item.Id;
-	LocalVariables.Locations[4].Item.Recipe := LocalVariables.Locations[3].Item.Recipe;
-	LocalVariables.Locations[3].Item.Id := 0;
-	LocalVariables.Locations[3].Item.Recipe := LocalVariables.Recipe;
 ELSIF NOT gvl.FotocellOutput THEN
 	gvl.MotorTableMove := FALSE;
 	gvl.PistonPress := FALSE;
@@ -36,11 +35,36 @@ ELSE
 	gvl.MotorTableMove := TRUE;
 END_IF
 
+IF fallTrigDetected THEN
+	LocalVariables.Locations[4].Item.Id := LocalVariables.Locations[3].Item.Id;
+	LocalVariables.Locations[4].Item.Recipe := LocalVariables.Locations[3].Item.Recipe;
+	LocalVariables.Locations[3].Item.Id := NULL;
+	LocalVariables.Locations[3].Item.Recipe := LocalVariables.Recipe;
+END_IF
+
 ]]></ST>
     </Implementation>
     <LineIds Name="TableLogic">
-      <LineId Id="452" Count="1" />
-      <LineId Id="455" Count="23" />
+      <LineId Id="452" Count="0" />
+      <LineId Id="586" Count="0" />
+      <LineId Id="585" Count="0" />
+      <LineId Id="584" Count="0" />
+      <LineId Id="555" Count="0" />
+      <LineId Id="488" Count="0" />
+      <LineId Id="494" Count="0" />
+      <LineId Id="490" Count="2" />
+      <LineId Id="486" Count="0" />
+      <LineId Id="463" Count="3" />
+      <LineId Id="471" Count="4" />
+      <LineId Id="576" Count="0" />
+      <LineId Id="477" Count="0" />
+      <LineId Id="578" Count="0" />
+      <LineId Id="556" Count="0" />
+      <LineId Id="582" Count="1" />
+      <LineId Id="579" Count="0" />
+      <LineId Id="581" Count="0" />
+      <LineId Id="580" Count="0" />
+      <LineId Id="478" Count="0" />
       <LineId Id="294" Count="0" />
     </LineIds>
   </POU>

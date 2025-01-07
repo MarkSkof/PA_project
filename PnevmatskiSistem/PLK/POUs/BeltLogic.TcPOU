@@ -7,23 +7,41 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
+	fallTrig: F_TRIG;
+	fallTrigDetected: bool;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF NOT LocalVariables.Locations[5].Item.Id = 0 THEN
+      <ST><![CDATA[fallTrig(CLK:= gvl.FotocellOutput, Q => fallTrigDetected);
+
+IF NOT LocalVariables.Locations[5].Item.Id = 0 THEN
 	gvl.MotorBeltMove := TRUE;
 ELSIF NOT gvl.FotocellOutput THEN
+	gvl.MotorBeltMove := FALSE;
+ELSIF gvl.FotocellOutput THEN
+	LocalVariables.Locations[6].Item.Id := NULL;
+	LocalVariables.Locations[6].Item.Recipe := LocalVariables.Recipe;
+END_IF
+
+IF fallTrigDetected THEN
 	LocalVariables.Locations[6].Item.Id := LocalVariables.Locations[5].Item.Id;
 	LocalVariables.Locations[6].Item.Recipe := LocalVariables.Locations[5].Item.Recipe;
-	gvl.MotorBeltMove := FALSE;
+	LocalVariables.Locations[5].Item.Id := NULL;
+	LocalVariables.Locations[5].Item.Recipe := LocalVariables.Recipe;
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="BeltLogic">
+      <LineId Id="79" Count="1" />
       <LineId Id="12" Count="1" />
-      <LineId Id="10" Count="0" />
-      <LineId Id="16" Count="1" />
-      <LineId Id="11" Count="0" />
+      <LineId Id="10" Count="1" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="103" Count="0" />
       <LineId Id="9" Count="0" />
+      <LineId Id="91" Count="1" />
+      <LineId Id="97" Count="2" />
+      <LineId Id="96" Count="0" />
+      <LineId Id="90" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

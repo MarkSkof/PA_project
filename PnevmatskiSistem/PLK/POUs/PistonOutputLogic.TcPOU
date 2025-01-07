@@ -22,7 +22,7 @@ IF timerElapsed THEN
 ELSIF fallTrigDetected THEN
 	LocalVariables.Locations[5].Item.Id := LocalVariables.Locations[4].Item.Id;
 	LocalVariables.Locations[5].Item.Recipe := LocalVariables.Locations[4].Item.Recipe;
-	LocalVariables.Locations[4].Item.Id := 0;
+	LocalVariables.Locations[4].Item.Id := NULL;
 	LocalVariables.Locations[4].Item.Recipe := LocalVariables.Recipe;
 ELSE
 	gvl.PistonOutputBackwards := TRUE;
