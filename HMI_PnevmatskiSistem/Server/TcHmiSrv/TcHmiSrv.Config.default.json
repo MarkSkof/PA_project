@@ -27,7 +27,23 @@
     "DEFAULTTIMEFORMATLOCALE": "client",
     "DEFAULTTIMEZONE": "client",
     "DEFAULTUSERGROUP": "__SystemUsers",
-    "DEFINITIONS": {},
+    "DEFINITIONS": {
+        "PLC 1.ErrorsWarnings": {
+            "properties": {
+                "CompressorNotRunning": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                        },
+                        {
+                            "propertyOrder": 1
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        }
+    },
     "DEFLATECOMPRESSIONLEVEL": 5,
     "DIAGNOSTICS_DOMAINS": [],
     "DISABLED_CONFIGURATION_HINTS": [],
@@ -2601,6 +2617,40 @@
             },
             "USEMAPPING": true
         },
+        "PLC 1.LocalVariables.Recipe.WorkingTime": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC 1::LocalVariables::Recipe::WorkingTime",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/TIME"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC 1.MAIN.errorsAndWarnings.CompressorNotRunning": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC 1::MAIN::errorsAndWarnings::CompressorNotRunning",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "RefreshDefinitions": {
             "ACCESS": 3,
             "DOMAIN": "TcHmiSrv",
@@ -3526,6 +3576,10 @@
                 "PLC 1.LocalVariables.Locations.3.Item.Id": 3,
                 "PLC 1.LocalVariables.Locations.4.Item.Id": 3,
                 "PLC 1.LocalVariables.Locations.5.Item.Id": 3,
+                "PLC 1.LocalVariables.Recipe.WorkingTime": 3,
+                "PLC 1.MAIN.automatic.inputPiston.item.Recipe.WorkingTime": 3,
+                "PLC 1.MAIN.errorsAndWarnings": 3,
+                "PLC 1.MAIN.errorsAndWarnings.CompressorNotRunning": 3,
                 "SetLocale": 3,
                 "SubscribeEvents": 3,
                 "TcHmiSqliteLogger.Diagnostics": 1,

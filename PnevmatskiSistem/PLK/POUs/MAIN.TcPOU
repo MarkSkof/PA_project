@@ -5,6 +5,7 @@
 VAR
 	manual: Manual;
 	automatic: Automatic;
+	errorsAndWarnings: ErrorsWarnings;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -19,6 +20,8 @@ IF gvl.Switch THEN
 else
 	automatic();
 END_IF
+
+errorsAndWarnings();
 ]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
@@ -29,6 +32,8 @@ END_IF
       <LineId Id="223" Count="0" />
       <LineId Id="306" Count="1" />
       <LineId Id="224" Count="0" />
+      <LineId Id="338" Count="0" />
+      <LineId Id="337" Count="0" />
       <LineId Id="190" Count="0" />
     </LineIds>
   </POU>

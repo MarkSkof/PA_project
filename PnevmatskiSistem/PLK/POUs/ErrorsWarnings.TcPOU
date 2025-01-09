@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="ErrorsWarnings" Id="{4bc88007-fc33-4b68-bf49-9f55719a9747}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ErrorsWarnings
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	CompressorNotRunning: BOOL;
+	LineBackedUp: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[CompressorNotRunning := NOT gvl.MotorCompressor;
+
+LineBackedUp := NOT gvl.FotocellOutput;]]></ST>
+    </Implementation>
+    <LineIds Name="ErrorsWarnings">
+      <LineId Id="94" Count="0" />
+      <LineId Id="92" Count="0" />
+      <LineId Id="90" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
