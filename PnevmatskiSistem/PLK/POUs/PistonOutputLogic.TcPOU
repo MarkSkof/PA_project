@@ -11,33 +11,27 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[timer(IN := gvl.SwitchTableExit, PT := T#0.5S, Q => timerElapsed);
-riseTrig(CLK := gvl.SwitchTableExit, Q => riseTrigDetected);
+//riseTrig(CLK := gvl.SwitchTableExit, Q => riseTrigDetected);
 
 IF timerElapsed THEN
 	gvl.PistonOutputBackwards := FALSE;
 	gvl.PistonOutputForward := TRUE;
-	//LocalVariables.Locations[4].Item.Id := LocalVariables.Locations[3].Item.Id;
-	//LocalVariables.Locations[4].Item.Recipe := LocalVariables.Locations[3].Item.Recipe;
 	gvl.MotorBeltMove := TRUE;
 ELSE
 	gvl.PistonOutputBackwards := TRUE;
 	gvl.PistonOutputForward := FALSE;
 END_IF
 
-IF riseTrigDetected THEN
-	LocalVariables.Locations[5].Item.Id := LocalVariables.Locations[4].Item.Id;
-	LocalVariables.Locations[5].Item.Recipe := LocalVariables.Locations[4].Item.Recipe;
-	LocalVariables.Locations[4].Item.Id := NULL;
-	LocalVariables.Locations[4].Item.Recipe := LocalVariables.Recipe;
-END_IF]]></ST>
+//IF riseTrigDetected THEN
+//	LocalVariables.Locations[5].Item.Id := LocalVariables.Locations[4].Item.Id;
+//	LocalVariables.Locations[5].Item.Recipe := LocalVariables.Locations[4].Item.Recipe;
+//	LocalVariables.Locations[4].Item.Id := NULL;
+//	LocalVariables.Locations[4].Item.Recipe := LocalVariables.Recipe;
+//END_IF]]></ST>
     </Implementation>
     <LineIds Name="PistonOutputLogic">
-      <LineId Id="349" Count="8" />
-      <LineId Id="370" Count="1" />
-      <LineId Id="369" Count="0" />
-      <LineId Id="366" Count="0" />
-      <LineId Id="368" Count="0" />
-      <LineId Id="358" Count="4" />
+      <LineId Id="379" Count="4" />
+      <LineId Id="386" Count="11" />
       <LineId Id="9" Count="0" />
     </LineIds>
   </POU>

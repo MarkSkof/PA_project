@@ -13,16 +13,16 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[riseTrig(CLK := gvl.SwitchPress, Q => riseTrigDetected);
-fallTrig(CLK:= gvl.SwitchPress, Q => fallTrigDetected);
+//fallTrig(CLK:= gvl.SwitchPress, Q => fallTrigDetected);
 timer(IN := riseTrigDetected, PT := LocalVariables.Recipe.WorkingTime, Q => timerElapsed);
 gvl.MotorTableMove := TRUE;
 
-IF riseTrigDetected THEN
-	LocalVariables.Locations[3].Item.Id := LocalVariables.Locations[2].Item.Id;
-	LocalVariables.Locations[3].Item.Recipe := LocalVariables.Locations[2].Item.Recipe;
-	LocalVariables.Locations[2].Item.Id := NULL;
-	LocalVariables.Locations[2].Item.Recipe := LocalVariables.Recipe;
-END_IF
+//IF riseTrigDetected THEN
+//	LocalVariables.Locations[3].Item.Id := LocalVariables.Locations[2].Item.Id;
+//	LocalVariables.Locations[3].Item.Recipe := LocalVariables.Locations[2].Item.Recipe;
+//	LocalVariables.Locations[2].Item.Id := NULL;
+//	LocalVariables.Locations[2].Item.Recipe := LocalVariables.Recipe;
+//END_IF
 
 IF timerElapsed THEN
 	gvl.PistonPress := TRUE;
@@ -35,12 +35,12 @@ ELSE
 	gvl.MotorTableMove := TRUE;
 END_IF
 
-IF fallTrigDetected THEN
-	LocalVariables.Locations[4].Item.Id := LocalVariables.Locations[3].Item.Id;
-	LocalVariables.Locations[4].Item.Recipe := LocalVariables.Locations[3].Item.Recipe;
-	LocalVariables.Locations[3].Item.Id := NULL;
-	LocalVariables.Locations[3].Item.Recipe := LocalVariables.Recipe;
-END_IF
+//IF fallTrigDetected THEN
+//	LocalVariables.Locations[4].Item.Id := LocalVariables.Locations[3].Item.Id;
+//	LocalVariables.Locations[4].Item.Recipe := LocalVariables.Locations[3].Item.Recipe;
+//	LocalVariables.Locations[3].Item.Id := NULL;
+//	LocalVariables.Locations[3].Item.Recipe := LocalVariables.Recipe;
+//END_IF
 
 ]]></ST>
     </Implementation>

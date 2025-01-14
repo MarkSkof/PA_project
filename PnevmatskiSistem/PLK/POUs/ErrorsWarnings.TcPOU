@@ -9,17 +9,28 @@ END_VAR
 VAR
 	CompressorNotRunning: BOOL;
 	LineBackedUp: BOOL;
+	BeltWrongDirection: BOOL;
+	TableWrongDirection: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[CompressorNotRunning := NOT gvl.MotorCompressor;
+      <ST><![CDATA[// ERRORS
+CompressorNotRunning := NOT gvl.MotorCompressor;
+	
 
-LineBackedUp := NOT gvl.FotocellOutput;]]></ST>
+//WARNINGS
+LineBackedUp := NOT gvl.FotocellOutput;
+BeltWrongDirection := gvl.MotorBeltDirection;
+TableWrongDirection := gvl.MotorTableDirection;]]></ST>
     </Implementation>
     <LineIds Name="ErrorsWarnings">
+      <LineId Id="104" Count="0" />
       <LineId Id="94" Count="0" />
+      <LineId Id="105" Count="1" />
       <LineId Id="92" Count="0" />
       <LineId Id="90" Count="0" />
+      <LineId Id="107" Count="0" />
+      <LineId Id="128" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

@@ -38,6 +38,9 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\ActiveLogic.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Automatic.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -63,6 +66,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\TableLogic.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\TrackingLogic.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

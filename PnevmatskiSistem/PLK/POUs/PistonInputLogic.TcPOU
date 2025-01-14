@@ -13,25 +13,25 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[timer(IN :=  NOT gvl.FotocellInput AND gvl.SwitchTablePosition, PT := T#1S, Q => timerElapsed);
-counter();
+//counter();
 
 IF timerElapsed AND LocalVariables.Locations[2].Item.Id = 0 THEN
 	gvl.PistonInputBackwards := FALSE;
 	gvl.PistonInputForward := TRUE;
-	LocalVariables.Locations[2].Item.Id := LocalVariables.Locations[1].Item.Id;
-	LocalVariables.Locations[2].Item.Recipe := LocalVariables.Locations[1].Item.Recipe;
+//	LocalVariables.Locations[2].Item.Id := LocalVariables.Locations[1].Item.Id;
+//	LocalVariables.Locations[2].Item.Recipe := LocalVariables.Locations[1].Item.Recipe;
 	
-ELSIF NOT gvl.FotocellInput THEN
-	counter.CU := TRUE;
-	id := counter.CV;
-	LocalVariables.Locations[1].Item.Id := id;
-	LocalVariables.Locations[1].Item.Recipe := LocalVariables.Recipe;
+//ELSIF NOT gvl.FotocellInput THEN
+//	counter.CU := TRUE;
+//	id := counter.CV;
+//	LocalVariables.Locations[1].Item.Id := id;
+//	LocalVariables.Locations[1].Item.Recipe := LocalVariables.Recipe;
 
 ELSE
 	gvl.PistonInputBackwards := TRUE;
 	gvl.PistonInputForward := FALSE;
-	counter.CU := FALSE;
-	LocalVariables.Locations[1].Item.Id := NULL;
+	//counter.CU := FALSE;
+	//LocalVariables.Locations[1].Item.Id := NULL;
 END_IF
 
 

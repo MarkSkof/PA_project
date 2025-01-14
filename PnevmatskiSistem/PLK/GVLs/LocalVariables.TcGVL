@@ -4,7 +4,7 @@
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
 	Locations: ARRAY[1..6] OF Location;
-	Recipe: Recipe := (NumOfPresses := 1, WorkingTime := TIME#2s0ms);
+	Recipe: Recipe := (WorkingTime := TIME#2s0ms);
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

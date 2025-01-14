@@ -3,7 +3,6 @@
   <DUT Name="Recipe" Id="{3015f1b9-d8b7-40d5-b66f-8cb2d08060d2}">
     <Declaration><![CDATA[TYPE Recipe :
 STRUCT
-	NumOfPresses: INT;
 	WorkingTime: TIME; 
 END_STRUCT
 END_TYPE

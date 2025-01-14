@@ -6,6 +6,7 @@ VAR
 	Counter: CTUD;
 	MotorTable: Motor;
 	MotorBelt: Motor;
+	Backwards: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>

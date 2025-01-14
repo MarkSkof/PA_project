@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="TrackingLogic" Id="{8c28bcad-8b95-4b6d-89db-b0a98acfdd83}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK TrackingLogic
+VAR
+	timerPistonInput: TOF;
+	timerElapsedPistonInput: BOOL;
+	counter: CTU;
+	id: UDINT;
+	item: Item;
+	location: Location;
+	timerTable: TOF;
+	timerElapsedTable: BOOL;
+	riseTrigTable: R_TRIG;
+	riseTrigDetectedTable: BOOL;
+	fallTrigTable: F_TRIG;
+	fallTrigDetectedTable: BOOL;
+	riseTrigPistonOutput: R_TRIG;
+	riseTrigDetectedPistonOutput: BOOL;
+	fallTrigBelt: F_TRIG;
+	fallTrigDetectedBelt: bool;
+	fallTrigPistonInput: F_TRIG;
+	fallTrigDetectedPistonInput: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//Piston Input logic
+timerPistonInput(IN :=  NOT gvl.FotocellInput AND gvl.SwitchTablePosition, PT := T#1S, Q => timerElapsedPistonInput);
+fallTrigPistonInput(CLK := gvl.PistonInputForward, Q => fallTrigDetectedPistonInput);
+counter();
+IF fallTrigDetectedPistonInput AND LocalVariables.Locations[2].Item.Id = 0 THEN
+	LocalVariables.Locations[2].Item.Id := LocalVariables.Locations[1].Item.Id;
+	LocalVariables.Locations[2].Item.Recipe := LocalVariables.Locations[1].Item.Recipe;
+	LocalVariables.Locations[1].Item.Id := NULL;
+ELSIF NOT gvl.FotocellInput THEN
+	counter.CU := TRUE;
+	id := counter.CV;
+	LocalVariables.Locations[1].Item.Id := id;
+	LocalVariables.Locations[1].Item.Recipe := LocalVariables.Recipe;
+ELSE
+	counter.CU := FALSE;
+END_IF
+
+//Table logic
+riseTrigTable(CLK := gvl.SwitchPress, Q => riseTrigDetectedTable);
+fallTrigTable(CLK:= gvl.SwitchPress, Q => fallTrigDetectedTable);
+timerTable(IN := riseTrigDetectedTable, PT := LocalVariables.Recipe.WorkingTime, Q => timerElapsedTable);
+
+IF riseTrigDetectedTable THEN
+	LocalVariables.Locations[3].Item.Id := LocalVariables.Locations[2].Item.Id;
+	LocalVariables.Locations[3].Item.Recipe := LocalVariables.Locations[2].Item.Recipe;
+	LocalVariables.Locations[2].Item.Id := NULL;
+	LocalVariables.Locations[2].Item.Recipe := LocalVariables.Recipe;
+END_IF
+
+IF fallTrigDetectedTable THEN
+	LocalVariables.Locations[4].Item.Id := LocalVariables.Locations[3].Item.Id;
+	LocalVariables.Locations[4].Item.Recipe := LocalVariables.Locations[3].Item.Recipe;
+	LocalVariables.Locations[3].Item.Id := NULL;
+	LocalVariables.Locations[3].Item.Recipe := LocalVariables.Recipe;
+END_IF
+
+//Piston Output logic
+riseTrigPistonOutput(CLK := gvl.SwitchTableExit, Q => riseTrigDetectedPistonOutput);
+
+IF riseTrigDetectedPistonOutput THEN
+	LocalVariables.Locations[5].Item.Id := LocalVariables.Locations[4].Item.Id;
+	LocalVariables.Locations[5].Item.Recipe := LocalVariables.Locations[4].Item.Recipe;
+	LocalVariables.Locations[4].Item.Id := NULL;
+	LocalVariables.Locations[4].Item.Recipe := LocalVariables.Recipe;
+END_IF
+
+//Belt logic
+fallTrigBelt(CLK:= gvl.FotocellOutput, Q => fallTrigDetectedBelt);
+
+IF gvl.FotocellOutput THEN
+	LocalVariables.Locations[6].Item.Id := NULL;
+	LocalVariables.Locations[6].Item.Recipe := LocalVariables.Recipe;
+END_IF
+
+IF fallTrigDetectedBelt THEN
+	LocalVariables.Locations[6].Item.Id := LocalVariables.Locations[5].Item.Id;
+	LocalVariables.Locations[6].Item.Recipe := LocalVariables.Locations[5].Item.Recipe;
+	LocalVariables.Locations[5].Item.Id := NULL;
+	LocalVariables.Locations[5].Item.Recipe := LocalVariables.Recipe;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="TrackingLogic">
+      <LineId Id="75" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="576" Count="0" />
+      <LineId Id="432" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="16" Count="7" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="155" Count="2" />
+      <LineId Id="159" Count="5" />
+      <LineId Id="176" Count="7" />
+      <LineId Id="186" Count="0" />
+      <LineId Id="185" Count="0" />
+      <LineId Id="305" Count="0" />
+      <LineId Id="317" Count="5" />
+      <LineId Id="303" Count="0" />
+      <LineId Id="187" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="416" Count="0" />
+      <LineId Id="421" Count="10" />
+      <LineId Id="358" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

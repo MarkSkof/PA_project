@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="ActiveLogic" Id="{a18fb611-4c29-4205-b06a-1f2633a95e85}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ActiveLogic
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[LocalVariables.Locations[1].Active := gvl.PistonInputForward;
+LocalVariables.Locations[2].Active := gvl.MotorTableMove;
+LocalVariables.Locations[3].Active := gvl.PistonPress;
+LocalVariables.Locations[4].Active := gvl.PistonOutputForward;
+LocalVariables.Locations[5].Active := gvl.MotorBeltMove;
+LocalVariables.Locations[6].Active := NOT gvl.FotocellOutput;
+]]></ST>
+    </Implementation>
+    <LineIds Name="ActiveLogic">
+      <LineId Id="9" Count="0" />
+      <LineId Id="11" Count="4" />
+      <LineId Id="10" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

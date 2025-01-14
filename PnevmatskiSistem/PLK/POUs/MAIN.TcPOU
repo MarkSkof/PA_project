@@ -6,6 +6,8 @@ VAR
 	manual: Manual;
 	automatic: Automatic;
 	errorsAndWarnings: ErrorsWarnings;
+	trackingLogic: TrackingLogic;
+	activeLogic: ActiveLogic;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -20,7 +22,8 @@ IF gvl.Switch THEN
 else
 	automatic();
 END_IF
-
+trackingLogic();
+activeLogic();
 errorsAndWarnings();
 ]]></ST>
     </Implementation>
@@ -33,6 +36,7 @@ errorsAndWarnings();
       <LineId Id="306" Count="1" />
       <LineId Id="224" Count="0" />
       <LineId Id="338" Count="0" />
+      <LineId Id="390" Count="0" />
       <LineId Id="337" Count="0" />
       <LineId Id="190" Count="0" />
     </LineIds>

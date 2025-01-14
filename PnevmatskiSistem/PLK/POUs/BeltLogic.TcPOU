@@ -18,17 +18,17 @@ IF NOT LocalVariables.Locations[5].Item.Id = 0 THEN
 	gvl.MotorBeltMove := TRUE;
 ELSIF NOT gvl.FotocellOutput THEN
 	gvl.MotorBeltMove := FALSE;
-ELSIF gvl.FotocellOutput THEN
-	LocalVariables.Locations[6].Item.Id := NULL;
-	LocalVariables.Locations[6].Item.Recipe := LocalVariables.Recipe;
+//ELSIF gvl.FotocellOutput THEN
+//	LocalVariables.Locations[6].Item.Id := NULL;
+//	LocalVariables.Locations[6].Item.Recipe := LocalVariables.Recipe;
 END_IF
 
-IF fallTrigDetected THEN
-	LocalVariables.Locations[6].Item.Id := LocalVariables.Locations[5].Item.Id;
-	LocalVariables.Locations[6].Item.Recipe := LocalVariables.Locations[5].Item.Recipe;
-	LocalVariables.Locations[5].Item.Id := NULL;
-	LocalVariables.Locations[5].Item.Recipe := LocalVariables.Recipe;
-END_IF]]></ST>
+//IF fallTrigDetected THEN
+//	LocalVariables.Locations[6].Item.Id := LocalVariables.Locations[5].Item.Id;
+//	LocalVariables.Locations[6].Item.Recipe := LocalVariables.Locations[5].Item.Recipe;
+//	LocalVariables.Locations[5].Item.Id := NULL;
+//	LocalVariables.Locations[5].Item.Recipe := LocalVariables.Recipe;
+//END_IF]]></ST>
     </Implementation>
     <LineIds Name="BeltLogic">
       <LineId Id="79" Count="1" />
