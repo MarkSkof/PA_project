@@ -2515,6 +2515,120 @@
             },
             "USEMAPPING": true
         },
+        "PLC 1.GVL.ButtonRed": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC 1::GVL::ButtonRed",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "attributes": {
+                            "TcAddressType": "Input"
+                        }
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC 1.GVL.LEDBlueBottom": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC 1::GVL::LEDBlueBottom",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "attributes": {
+                            "TcAddressType": "Output"
+                        }
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC 1.GVL.LEDBlueTop": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC 1::GVL::LEDBlueTop",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "attributes": {
+                            "TcAddressType": "Output"
+                        }
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC 1.GVL.LEDGreen": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC 1::GVL::LEDGreen",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "attributes": {
+                            "TcAddressType": "Output"
+                        }
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC 1.GVL.LEDRed": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC 1::GVL::LEDRed",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "attributes": {
+                            "TcAddressType": "Output"
+                        }
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC 1.GVL.Switch": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC 1::GVL::Switch",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "attributes": {
+                            "TcAddressType": "Input"
+                        }
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC 1.LocalVariables.Locations.0.Active": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -3724,6 +3838,12 @@
                 "Login": 3,
                 "Logout": 3,
                 "PLC 1.GVL.ButtonGreen": 3,
+                "PLC 1.GVL.ButtonRed": 3,
+                "PLC 1.GVL.LEDBlueBottom": 3,
+                "PLC 1.GVL.LEDBlueTop": 3,
+                "PLC 1.GVL.LEDGreen": 3,
+                "PLC 1.GVL.LEDRed": 3,
+                "PLC 1.GVL.Switch": 3,
                 "PLC 1.LocalVariables.Locations.0.Active": 3,
                 "PLC 1.LocalVariables.Locations.0.Item.Id": 3,
                 "PLC 1.LocalVariables.Locations.1.Active": 3,
